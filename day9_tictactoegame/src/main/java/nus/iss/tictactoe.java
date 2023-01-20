@@ -1,5 +1,7 @@
 package nus.iss;
 
+import java.util.Arrays;
+
 public class tictactoe {
     public void printBoard(String[] board){
     System.out.println("|---|---|---|");
@@ -14,6 +16,7 @@ public class tictactoe {
     public String checkWinner(String[] board){
        
         String line = ""; 
+        String winner = ""; 
 
         int i = 0; 
         while(i<8){
@@ -43,11 +46,26 @@ public class tictactoe {
                 break; 
                 
             }
+            if (line.equals("XXX")){
+                winner = "X"; 
+                i=9; 
+            } else if (line.equalsIgnoreCase("000")){
+                winner = "0"; 
+                i=9; 
+            } else {
+                for(int a = 0; a<9; a++){
+                    if (Arrays.asList(board).contains(String.valueOf(a+1))){
+                        break; 
+                    } else if (a == 8){
+                        winner = "draw"; 
+                    }
+                }
+            }
             i++; 
         }
        
        
        
-        return ""; 
+        return winner; 
     }
 }
